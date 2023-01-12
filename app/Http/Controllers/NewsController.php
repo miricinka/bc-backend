@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreNewsRequest;
 use App\Models\News;
-use Illuminate\Http\Request;
 use App\Http\Resources\V1\NewsCollection;
+use App\Http\Resources\V1\NewsResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class NewsController extends Controller
 {
@@ -15,7 +18,17 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return new NewsCollection(News::all());
+        $news = News::orderBy('created_at','desc')->get();
+        //$news = News::with('comments')->get();
+        $response = array();
+        foreach($news as $new){
+            $count = $new->comments()->get()->count();
+            $newWithCount = ['news' => $new, 'commentCount' => $count];
+            array_push($response, $newWithCount);
+        }
+        return $response;
+        //return News::orderBy('created_at','desc')->get();
+        //return new ResourceCollection(News::orderBy('created_at','desc')->get());
     }
 
     /**
@@ -24,11 +37,10 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-        News::create($request->all());
+        News::create($request->validated());
         return response()->json("New news created");
-        //
     }
 
     /**
@@ -39,18 +51,12 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
+        return [
+            'id' => $news->id,
+            'title' => $news->title,
+            'text' => $news->text,
+            'created_at' => $news->created_at,
+        ];
     }
 
     /**
@@ -60,9 +66,10 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(StoreNewsRequest $request, News $news)
     {
-        //
+        $news->update($request->validated());
+        return response()->json("News updated");
     }
 
     /**

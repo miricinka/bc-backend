@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SkillController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::group([], function () {
 Route::group([], function () {
     Route::apiResource('news', NewsController::class);
 });
+
+Route::get('/news/{news}/comments', [CommentController::class, 'getComments']);
+
+Route::post('/news/comments', [CommentController::class, 'store']);
 
