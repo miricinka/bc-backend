@@ -34,3 +34,7 @@ Route::get('/news/{news}/comments', [CommentController::class, 'getComments']);
 
 Route::post('/news/comments', [CommentController::class, 'store']);
 
+Route::put('/news/comments/{comment}', [CommentController::class, 'update']);
+
+Route::delete('/news/comments/{comment}', [CommentController::class, 'destroy']);
+
