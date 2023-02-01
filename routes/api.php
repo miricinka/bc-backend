@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SkillController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivitiesUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +40,18 @@ Route::post('/news/comments', [CommentController::class, 'store']);
 Route::put('/news/comments/{comment}', [CommentController::class, 'update']);
 
 Route::delete('/news/comments/{comment}', [CommentController::class, 'destroy']);
+
+Route::get('/users', [UserController::class, 'index']);
+
+Route::get('/users/{username}', [UserController::class, 'show']);
+//delete later
+Route::get('/activity/{name}', [ActivityController::class, 'show']);
+
+Route::get('/users/{username}/activities', [UserController::class, 'showActivities']);
+
+Route::get('/userActivitiesTable', [ActivitiesUsersController::class, 'getUsersActivitiesTable']);
+
+Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
+
+Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
 
