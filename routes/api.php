@@ -47,6 +47,12 @@ Route::get('/users/{username}', [UserController::class, 'show']);
 //delete later
 Route::get('/activity/{name}', [ActivityController::class, 'show']);
 
+Route::post('/activity', [ActivityController::class, 'store']);
+
+Route::put('/activity/{name}', [ActivityController::class, 'update']);
+
+Route::delete('/activity/{name}', [ActivityController::class, 'destroy']);
+
 Route::get('/users/{username}/activities', [UserController::class, 'showActivities']);
 
 Route::get('/userActivitiesTable', [ActivitiesUsersController::class, 'getUsersActivitiesTable']);
