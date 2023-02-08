@@ -9,6 +9,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivitiesUsersController;
+use App\Http\Controllers\AttendanceDayController;
+use App\Http\Controllers\AttendanceDaysUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +63,6 @@ Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
 
 Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
 
+Route::post('/attendance', [AttendanceDayController::class, 'store']);
+
+Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
