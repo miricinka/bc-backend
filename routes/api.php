@@ -63,6 +63,12 @@ Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
 
 Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
 
-Route::post('/attendance', [AttendanceDayController::class, 'store']);
+Route::post('/attendanceDay', [AttendanceDayController::class, 'store']);
+
+Route::delete('/attendance/{day}', [AttendanceDayController::class, 'destroy']);
 
 Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
+
+Route::post('/attendance', [AttendanceDaysUsersController::class, 'add']);
+
+Route::delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\AttendanceDay;
 
 class User extends Authenticatable
 {
@@ -54,6 +55,6 @@ class User extends Authenticatable
     }
 
     public function attendance_days(){
-        return $this->belongsToMany(Attendance_days::class, 'attendance_days_users', 'username', 'attendance_day_id');
+        return $this->belongsToMany(AttendanceDay::class, 'attendence_days_users', 'username', 'attendance_day_id');
     }
 }
