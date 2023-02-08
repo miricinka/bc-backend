@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SkillController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivitiesUsersController;
+use App\Http\Controllers\AttendanceDayController;
+use App\Http\Controllers\AttendanceDaysUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +43,26 @@ Route::put('/news/comments/{comment}', [CommentController::class, 'update']);
 
 Route::delete('/news/comments/{comment}', [CommentController::class, 'destroy']);
 
+Route::get('/users', [UserController::class, 'index']);
+
+Route::get('/users/{username}', [UserController::class, 'show']);
+//delete later
+Route::get('/activity/{name}', [ActivityController::class, 'show']);
+
+Route::post('/activity', [ActivityController::class, 'store']);
+
+Route::put('/activity/{name}', [ActivityController::class, 'update']);
+
+Route::delete('/activity/{name}', [ActivityController::class, 'destroy']);
+
+Route::get('/users/{username}/activities', [UserController::class, 'showActivities']);
+
+Route::get('/userActivitiesTable', [ActivitiesUsersController::class, 'getUsersActivitiesTable']);
+
+Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
+
+Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
+
+Route::post('/attendance', [AttendanceDayController::class, 'store']);
+
+Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
