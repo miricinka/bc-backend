@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\ActivitiesUsersController;
 use App\Http\Controllers\AttendanceDayController;
 use App\Http\Controllers\AttendanceDaysUsersController;
@@ -72,3 +73,13 @@ Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getA
 Route::post('/attendance', [AttendanceDaysUsersController::class, 'add']);
 
 Route::delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
+
+Route::get('/tournament', [TournamentController::class, 'index']);
+
+Route::post('/tournament', [TournamentController::class, 'store']);
+
+Route::delete('/tournament/{tournament}', [TournamentController::class, 'destroy']);
+
+Route::get('/tournament/{tournament}', [TournamentController::class, 'show']);
+
+Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
