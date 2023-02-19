@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SkillController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
@@ -83,3 +84,5 @@ Route::delete('/tournament/{tournament}', [TournamentController::class, 'destroy
 Route::get('/tournament/{tournament}', [TournamentController::class, 'show']);
 
 Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
+
+Route::put('/game', [GameController::class, 'update']);

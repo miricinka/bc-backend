@@ -116,6 +116,13 @@ class DatabaseSeeder extends Seeder
             'tournament_id' => '1',
             'username' => 'user_4'
         ]);
+        DB::table('games')->insert([
+            'tournament_id' => '1',
+            'black' => 'user_2',
+            'white' => 'user_1',
+            'winner' => 'user_2',
+            'pgn' => '1. e4 e5 {king\'s pawn opening} 2. Nf3 Nc6 {aaa} 3. Bc4 Bc5 {giuoco piano} *'
+        ]);
 
     }
 }

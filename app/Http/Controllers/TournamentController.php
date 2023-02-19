@@ -42,7 +42,7 @@ class TournamentController extends Controller
      */
     public function show(Tournament $tournament)
     {
-        return Tournament::with('users')->find($tournament)->first();
+        return Tournament::with('users', 'games')->find($tournament)->first();
         //return $tournament::withCount('users')->get();
     }
 
