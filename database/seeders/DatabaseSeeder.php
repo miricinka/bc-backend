@@ -14,24 +14,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         DB::table('users')->insert([
             'username' => 'user_1',
-            'name' => 'Jmeno1',
-            'surname' => 'Prijmeni1',
+            'name' => 'Martin',
+            'surname' => 'Šachista',
             'email' => 'user_1.@gmail.com',
             'password' => 'user_1',
         ]);
         DB::table('users')->insert([
             'username' => 'user_2',
-            'name' => 'Jmeno2',
-            'surname' => 'Prijmeni2',
+            'name' => 'Jan',
+            'surname' => 'Novák',
+            'email' => 'user_2.@gmail.com',
+            'password' => 'user_2',
+        ]);
+        DB::table('users')->insert([
+            'username' => 'user_3',
+            'name' => 'Tomáš',
+            'surname' => 'Brzobohatý',
+            'email' => 'user_2.@gmail.com',
+            'password' => 'user_2',
+        ]);
+        DB::table('users')->insert([
+            'username' => 'user_4',
+            'name' => 'Anička',
+            'surname' => 'Malá',
             'email' => 'user_2.@gmail.com',
             'password' => 'user_2',
         ]);
         DB::table('news')->insert([
             'title' => 'nova aktualita',
             'text' => 'nova aktualita text',
+            'created_at' => '2023-01-09 00:00:00',
         ]);
         DB::table('news')->insert([
             'title' => 'aktualita 2',
@@ -60,5 +74,55 @@ class DatabaseSeeder extends Seeder
             'activity' => 'Psani',
             'username' => 'user_1',
         ]);
+        DB::table('attendance_days')->insert([
+            'date' => '2023-03-02 00:00:00',
+        ]);
+        DB::table('attendance_days')->insert([
+            'date' => '2023-03-09 00:00:00',
+        ]);
+        DB::table('attendance_days')->insert([
+            'date' => '2023-03-16 00:00:00',
+        ]);
+        DB::table('attendance_days')->insert([
+            'date' => '2023-03-23 00:00:00',
+        ]);
+        DB::table('attendence_days_users')->insert([
+            'attendance_day_id' => '1',
+            'username' => 'user_1'
+        ]);
+        DB::table('tournaments')->insert([
+            'title' => 'Hra o zlatý pohár',
+            'date' => '2023-02-16 00:00:00',
+            'description'=> 'Hra o zlatý pohár'
+        ]);
+        DB::table('tournaments')->insert([
+            'title' => 'Turnaj stříbrný bludišťák',
+            'date' => '2023-03-09 00:00:00',
+            'description'=> 'Víťez získá dobrý pocit sám ze sebe'
+        ]);
+        DB::table('tournaments_users')->insert([
+            'tournament_id' => '1',
+            'username' => 'user_1'
+        ]);
+        DB::table('tournaments_users')->insert([
+            'tournament_id' => '1',
+            'username' => 'user_2'
+        ]);
+        DB::table('tournaments_users')->insert([
+            'tournament_id' => '1',
+            'username' => 'user_3'
+        ]);
+        DB::table('tournaments_users')->insert([
+            'tournament_id' => '1',
+            'username' => 'user_4'
+        ]);
+        DB::table('games')->insert([
+            'tournament_id' => '1',
+            'black' => 'user_2',
+            'white' => 'user_1',
+            'winner' => 'user_2',
+            'pgn' => '1. e4 e5 {king\'s pawn opening} 2. Nf3 Nc6 {aaa} 3. Bc4 Bc5 {giuoco piano} *'
+        ]);
+
     }
 }

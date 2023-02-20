@@ -18,5 +18,29 @@ class AttendanceDaysUsersController extends Controller
           'attendanceDays' => $attendanceDays,
           'attendance' => $attendanceUsers
         ];
+    }
+
+    public function add(Request $request){
+        $username = $request->input('username');
+        $attendance_day_id = $request->input('attendance_day_id');
+  
+        $user =  User::where('username',$username)->first();
+        $attendanceDay = AttendanceDay::find($attendance_day_id);
+  
+        $user->attendance_days()->attach($attendanceDay);
+        return response()->json("Attendance created");
       }
+  
+      public function delete(Request $request){
+        $username = $request->input('username');
+        $attendance_day_id = $request->input('attendance_day_id');
+  
+        $user =  User::where('username',$username)->first();
+        $attendanceDay = AttendanceDay::find($attendance_day_id);
+  
+        $user->attendance_days()->detach($attendanceDay);
+        return response()->json("Activity marked as not done");
+      }
+
+
 }

@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SkillController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\ActivitiesUsersController;
 use App\Http\Controllers\AttendanceDayController;
 use App\Http\Controllers\AttendanceDaysUsersController;
@@ -63,6 +65,26 @@ Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
 
 Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
 
-Route::post('/attendance', [AttendanceDayController::class, 'store']);
+Route::post('/attendanceDay', [AttendanceDayController::class, 'store']);
+
+Route::delete('/attendance/{day}', [AttendanceDayController::class, 'destroy']);
 
 Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
+
+Route::post('/attendance', [AttendanceDaysUsersController::class, 'add']);
+
+Route::delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
+
+Route::get('/tournament', [TournamentController::class, 'index']);
+
+Route::post('/tournament', [TournamentController::class, 'store']);
+
+Route::delete('/tournament/{tournament}', [TournamentController::class, 'destroy']);
+
+Route::get('/tournament/{tournament}', [TournamentController::class, 'show']);
+
+Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
+
+Route::put('/game', [GameController::class, 'update']);
+
+Route::get('/game/{game}', [GameController::class, 'show']);

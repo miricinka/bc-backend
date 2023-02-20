@@ -13,4 +13,10 @@ class AttendanceDayController extends Controller
         AttendanceDay::insert($request->all());
         return response()->json("Dates added");
     }
+
+    public function destroy(AttendanceDay $day){
+
+        $day->delete();
+        return response()->json("Day deleted");
+    }
 }
