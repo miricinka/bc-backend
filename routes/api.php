@@ -86,3 +86,5 @@ Route::get('/tournament/{tournament}', [TournamentController::class, 'show']);
 Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
 
 Route::put('/game', [GameController::class, 'update']);
+
+Route::get('/game/{game}', [GameController::class, 'show']);

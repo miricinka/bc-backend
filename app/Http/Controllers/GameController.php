@@ -24,5 +24,10 @@ class GameController extends Controller
         return response()->json('Game updated');
     }
 
+    public function show(Game $game)
+    {
+        return $game;
+    }
+
 
 }
