@@ -17,7 +17,8 @@ class ActivityController extends Controller
         //return response()->json("Activity created");
         Activity::create($request->validate([ 
             'name' => ['required'],
-            'weight' => ['required']
+            'weight' => ['required'],
+            'description' => 'nullable',
         ]));
         return response()->json("Activity created");
     }

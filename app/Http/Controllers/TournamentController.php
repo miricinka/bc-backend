@@ -29,7 +29,7 @@ class TournamentController extends Controller
         Tournament::create($request->validate([ 
             'date' => ['required'],
             'title' => ['required'],
-            'description',
+            'description' => 'nullable',
         ]));
         return response()->json("Tournament created");
     }
