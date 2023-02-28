@@ -58,7 +58,7 @@ class TournamentController extends Controller
         $tournament->update($request->validate([ 
             'date' => ['required'],
             'title' => ['required'],
-            'description',
+            'description' => 'nullable',
         ]));
     }
 

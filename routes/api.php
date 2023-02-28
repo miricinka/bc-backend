@@ -13,6 +13,7 @@ use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\ActivitiesUsersController;
 use App\Http\Controllers\AttendanceDayController;
 use App\Http\Controllers\AttendanceDaysUsersController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +89,14 @@ Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
 Route::put('/game', [GameController::class, 'update']);
 
 Route::get('/game/{game}', [GameController::class, 'show']);
+
+Route::get('/event', [EventController::class, 'index']);
+
+Route::post('/event', [EventController::class, 'store']);
+
+Route::delete('/event/{event}', [EventController::class, 'destroy']);
+
+Route::get('/event/{event}', [EventController::class, 'show']);
+
+Route::put('/event/{event}', [EventController::class, 'update']);
+

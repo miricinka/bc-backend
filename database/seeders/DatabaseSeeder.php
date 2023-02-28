@@ -123,6 +123,16 @@ class DatabaseSeeder extends Seeder
             'winner' => 'user_2',
             'pgn' => '1. e4 e5 {king\'s pawn opening} 2. Nf3 Nc6 {aaa} 3. Bc4 Bc5 {giuoco piano} *'
         ]);
+        DB::table('events')->insert([
+            'name' => 'Muzeum sachu',
+            'date' => '2023-12-03 00:00:00',
+            'description' => 'Vylet do nejvestiho muzea sachu v CR. S sebou svavinu a piti.',
+        ]);
+        DB::table('events')->insert([
+            'name' => 'Sachy pod sluncem',
+            'date' => '2023-07-12 00:00:00',
+            'description' => 'Budeme hrat sachy venku pri slunicku.',
+        ]);
 
     }
 }
