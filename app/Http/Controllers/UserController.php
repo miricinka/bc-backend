@@ -28,4 +28,9 @@ class UserController extends Controller
       $user =  User::where('username',$username)->first();
       return $user->activities;
     }
+
+    public function getTokenableKeyName()
+    {
+        return 'username';
+    }
 }

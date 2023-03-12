@@ -18,29 +18,29 @@ class DatabaseSeeder extends Seeder
             'username' => 'user_1',
             'name' => 'Martin',
             'surname' => 'Šachista',
-            'email' => 'user_1.@gmail.com',
-            'password' => 'user_1',
+            'email' => 'user_1@gmail.com',
+            'password' => bcrypt('user_1'),
         ]);
         DB::table('users')->insert([
             'username' => 'user_2',
             'name' => 'Jan',
             'surname' => 'Novák',
-            'email' => 'user_2.@gmail.com',
-            'password' => 'user_2',
+            'email' => 'user_2@gmail.com',
+            'password' => bcrypt('user_2'),
         ]);
         DB::table('users')->insert([
             'username' => 'user_3',
             'name' => 'Tomáš',
             'surname' => 'Brzobohatý',
-            'email' => 'user_2.@gmail.com',
-            'password' => 'user_2',
+            'email' => 'user_3@gmail.com',
+            'password' => bcrypt('user_3'),
         ]);
         DB::table('users')->insert([
             'username' => 'user_4',
             'name' => 'Anička',
             'surname' => 'Malá',
-            'email' => 'user_2.@gmail.com',
-            'password' => 'user_2',
+            'email' => 'user_4@gmail.com',
+            'password' => bcrypt('user_4'),
         ]);
         DB::table('news')->insert([
             'title' => 'nova aktualita',
