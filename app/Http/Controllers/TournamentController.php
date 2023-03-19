@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tournament;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TournamentController extends Controller
 {
@@ -14,8 +15,9 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        //return Tournament::orderBy('date')->get();
-        return Tournament::withCount('users')->orderBy('date')->get();
+        return Tournament::withCount('users')->with(['users' => function ($query) {
+            $query->select('users.username');
+        }])->orderBy('date')->get();
     }
 
     /**
@@ -73,4 +75,27 @@ class TournamentController extends Controller
         $tournament->delete();
         return response()->json("Tournament deleted");
     }
+
+    public function addUser(Tournament $tournament, Request $request){
+        $username = $request->input('username');
+  
+        $user =  User::where('username',$username)->first();
+
+        $tournament->users()->attach($user);
+
+        return response()->json('user signed into tournament');
+
+    }
+
+    public function deleteUser(Tournament $tournament, Request $request){
+        $username = $request->input('username');
+  
+        $user =  User::where('username',$username)->first();
+
+        $tournament->users()->detach($user);
+
+        return response()->json('user signed off tournament');
+    }
+
+
 }
