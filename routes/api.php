@@ -27,7 +27,9 @@ use App\Http\Controllers\EventController;
 |
 */
 
+//login and logout
 Route::post('/login', [AuthController::class, 'login']);
+//logout is protected
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
