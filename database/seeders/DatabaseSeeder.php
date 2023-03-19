@@ -42,6 +42,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'user_4@gmail.com',
             'password' => bcrypt('user_4'),
         ]);
+        DB::table('users')->insert([
+            'username' => 'admin',
+            'name' => 'Admin',
+            'surname' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'role' => 'admin',
+        ]);
         DB::table('news')->insert([
             'title' => 'nova aktualita',
             'text' => 'nova aktualita text',
@@ -50,11 +58,13 @@ class DatabaseSeeder extends Seeder
         DB::table('news')->insert([
             'title' => 'aktualita 2',
             'text' => 'text nove aktuality 2',
+            'created_at' => '2023-01-11 00:00:00',
         ]);
         DB::table('comments')->insert([
             'text' => 'comment k aktualite 2',
             'news_id' => '2',
             'username' => 'user_1',
+            'created_at' => '2023-01-11 00:00:00',
         ]);
         DB::table('activities')->insert([
             'name' => 'Kresleni',

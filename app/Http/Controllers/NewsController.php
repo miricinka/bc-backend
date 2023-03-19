@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNewsRequest;
 use App\Models\News;
-use App\Http\Resources\V1\NewsCollection;
-use App\Http\Resources\V1\NewsResource;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class NewsController extends Controller
 {

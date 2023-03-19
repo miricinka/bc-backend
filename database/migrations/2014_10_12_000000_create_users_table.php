@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->string('email');
             $table->rememberToken();
+            $table->string('role')->default('student');
         });
     }
 

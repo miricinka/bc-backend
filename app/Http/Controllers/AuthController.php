@@ -16,8 +16,9 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $token = $request->user()->createToken('api_token')->plainTextToken;
             $username = $request->user()->username;
+            $role = $request->user()->role;
 
-            return response()->json(['token' => $token, 'username' => $username]);
+            return response()->json(['token' => $token, 'username' => $username, 'role' => $role]);
         }
 
         return response()->json(['message' => 'Invalid login credentials'], 401);

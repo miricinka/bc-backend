@@ -17,7 +17,8 @@ class CommentController extends Controller
     {
         Comment::create($request->validate([ 
             'text' => ['required','min:3'],
-            'news_id' => ['required']
+            'news_id' => ['required'],
+            'username' => ['required']
         ]));
         return response()->json("Comment created");
     }
