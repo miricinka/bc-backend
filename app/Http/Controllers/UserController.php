@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::orderBy('username')->get();
+        return User::where('username', '!=', 'admin')->orderBy('username')->get();
     }
 
     public function show($username)
@@ -28,6 +28,16 @@ class UserController extends Controller
       $user =  User::where('username',$username)->first();
       return $user->activities;
     }
+
+    public function info($username){
+        $user =  User::where('username',$username)->first();
+        $activities = Activity::orderBy('name')->get();
+        $userActivities = $user->activities;
+        return [
+            'activities' => $activities,
+            'done' => $userActivities,
+          ];
+      }
 
     public function getTokenableKeyName()
     {

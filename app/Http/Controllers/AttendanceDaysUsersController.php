@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class AttendanceDaysUsersController extends Controller
 {
     public function getAttendanceUsersTable(){
-        $users =  User::orderBy('username')->get();
+        $users =  User::where('username', '!=', 'admin')->orderBy('username')->get();
         $attendanceDays = AttendanceDay::orderBy('date')->get();
         $attendanceUsers = DB::table('attendence_days_users')->get();
         return [
