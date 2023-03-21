@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('tournaments')->insert([
             'title' => 'Turnaj stříbrný bludišťák',
-            'date' => '2023-03-09 00:00:00',
+            'date' => '2023-06-09 00:00:00',
             'description'=> 'Víťez získá dobrý pocit sám ze sebe'
         ]);
         DB::table('tournaments_users')->insert([

@@ -48,9 +48,16 @@ Route::get('/users/{username}', [UserController::class, 'show']);
 /*
     news
 */
-Route::group([], function () {
-    Route::apiResource('news', NewsController::class);
-});
+
+Route::get('/news', [NewsController::class, 'index']);
+
+Route::get('/news/{news}', [NewsController::class, 'show']);
+
+Route::middleware('auth:sanctum')->post('/news', [NewsController::class, 'store']);
+
+Route::middleware('auth:sanctum')->put('/news/{news}', [NewsController::class, 'update']);
+
+Route::middleware('auth:sanctum')->delete('/news/{news}', [NewsController::class, 'destroy']);
 
 
 /*
@@ -58,46 +65,45 @@ Route::group([], function () {
 */
 Route::get('/news/{news}/comments', [CommentController::class, 'getComments']);
 
-Route::post('/news/comments', [CommentController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/news/comments', [CommentController::class, 'store']);
 
-Route::put('/news/comments/{comment}', [CommentController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/news/comments/{comment}', [CommentController::class, 'update']);
 
-Route::delete('/news/comments/{comment}', [CommentController::class, 'destroy']);
+Route::middleware('auth:sanctum')->delete('/news/comments/{comment}', [CommentController::class, 'destroy']);
 
 
 /*
     activities
 */
-//delete later
-Route::get('/activity/{name}', [ActivityController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/activity/{name}', [ActivityController::class, 'show']);
 
-Route::post('/activity', [ActivityController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/activity', [ActivityController::class, 'store']);
 
-Route::put('/activity/{name}', [ActivityController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/activity/{name}', [ActivityController::class, 'update']);
 
-Route::delete('/activity/{name}', [ActivityController::class, 'destroy']);
+Route::middleware('auth:sanctum')->delete('/activity/{name}', [ActivityController::class, 'destroy']);
 
-Route::get('/users/{username}/activities', [UserController::class, 'showActivities']);
+Route::middleware('auth:sanctum')->get('/users/{username}/activities', [UserController::class, 'showActivities']);
 
-Route::get('/userActivitiesTable', [ActivitiesUsersController::class, 'getUsersActivitiesTable']);
+Route::middleware('auth:sanctum')->get('/userActivitiesTable', [ActivitiesUsersController::class, 'getUsersActivitiesTable']);
 
-Route::post('/activityDone', [ActivitiesUsersController::class, 'done']);
+Route::middleware('auth:sanctum')->post('/activityDone', [ActivitiesUsersController::class, 'done']);
 
-Route::delete('/activityUnDone', [ActivitiesUsersController::class, 'unDone']);
+Route::middleware('auth:sanctum')->delete('/activityDone', [ActivitiesUsersController::class, 'unDone']);
 
 
 /*
     attendance
 */
-Route::post('/attendanceDay', [AttendanceDayController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/attendanceDay', [AttendanceDayController::class, 'store']);
 
-Route::delete('/attendance/{day}', [AttendanceDayController::class, 'destroy']);
+Route::middleware('auth:sanctum')->delete('/attendance/{day}', [AttendanceDayController::class, 'destroy']);
 
-Route::get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
+Route::middleware('auth:sanctum')->get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
 
-Route::post('/attendance', [AttendanceDaysUsersController::class, 'add']);
+Route::middleware('auth:sanctum')->post('/attendance', [AttendanceDaysUsersController::class, 'add']);
 
-Route::delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
+Route::middleware('auth:sanctum')->delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
 
 
 /*
@@ -105,26 +111,26 @@ Route::delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
 */
 Route::get('/tournament', [TournamentController::class, 'index']);
 
-Route::post('/tournament', [TournamentController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/tournament', [TournamentController::class, 'store']);
 
-Route::delete('/tournament/{tournament}', [TournamentController::class, 'destroy']);
+Route::middleware('auth:sanctum')->delete('/tournament/{tournament}', [TournamentController::class, 'destroy']);
 
-Route::get('/tournament/{tournament}', [TournamentController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/tournament/{tournament}', [TournamentController::class, 'show']);
 
-Route::put('/tournament/{tournament}', [TournamentController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/tournament/{tournament}', [TournamentController::class, 'update']);
 
 //tournaments users
-Route::post('/tournament/{tournament}/user', [TournamentController::class, 'addUser']);
+Route::middleware('auth:sanctum')->post('/tournament/{tournament}/user', [TournamentController::class, 'addUser']);
 
-Route::delete('/tournament/{tournament}/user', [TournamentController::class, 'deleteUser']);
+Route::middleware('auth:sanctum')->delete('/tournament/{tournament}/user', [TournamentController::class, 'deleteUser']);
 
 
 /*
     games
 */
-Route::put('/game', [GameController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/game', [GameController::class, 'update']);
 
-Route::get('/game/{game}', [GameController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/game/{game}', [GameController::class, 'show']);
 
 
 /*
@@ -132,11 +138,11 @@ Route::get('/game/{game}', [GameController::class, 'show']);
 */
 Route::get('/event', [EventController::class, 'index']);
 
-Route::post('/event', [EventController::class, 'store']);
-
-Route::delete('/event/{event}', [EventController::class, 'destroy']);
-
 Route::get('/event/{event}', [EventController::class, 'show']);
 
-Route::put('/event/{event}', [EventController::class, 'update']);
+Route::middleware('auth:sanctum')->post('/event', [EventController::class, 'store']);
+
+Route::middleware('auth:sanctum')->delete('/event/{event}', [EventController::class, 'destroy']);
+
+Route::middleware('auth:sanctum')->put('/event/{event}', [EventController::class, 'update']);
 
