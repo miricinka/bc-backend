@@ -51,6 +51,7 @@ class UserController extends Controller
             'name' => ['required'],
             'surname' => ['required'],
             'email' => ['required'],
+            'password' => ['required'],
         ]));
         return response()->json("User created");
     }

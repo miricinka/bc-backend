@@ -42,9 +42,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 Route::middleware('auth:sanctum')->get('/users', [UserController::class, 'index']);
 
-Route::get('/users/{username}', [UserController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/users/{username}', [UserController::class, 'show']);
 
-Route::get('/users/{username}/info', [UserController::class, 'info']);
+Route::middleware('auth:sanctum')->get('/users/{username}/info', [UserController::class, 'info']);
 
 Route::middleware('auth:sanctum')->post('/users', [UserController::class, 'store']);
 
