@@ -18,8 +18,8 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             //$table->foreignId('news_id')->constrained();
             $table->foreignId('news_id')->references('id')->on('news')->onDelete('cascade');
-            $table->string('username');
-            $table->foreign('username')->references('username')->on('users');
+            $table->string('username')->nullable();
+            $table->foreign('username')->references('username')->on('users')->onDelete('set null');
             $table->text('text');
         });
     }

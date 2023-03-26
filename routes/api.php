@@ -46,6 +46,12 @@ Route::get('/users/{username}', [UserController::class, 'show']);
 
 Route::get('/users/info/{username}', [UserController::class, 'info']);
 
+Route::post('/users', [UserController::class, 'store']);
+
+Route::delete('/users/{username}', [UserController::class, 'destroy']);
+
+Route::put('/users/{username}', [UserController::class, 'update']);
+
 
 /*
     news

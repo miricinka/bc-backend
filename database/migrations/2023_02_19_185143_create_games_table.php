@@ -19,13 +19,13 @@ class CreateGamesTable extends Migration
             $table->foreignId('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
 
             $table->string('black');
-            $table->foreign('black')->references('username')->on('users');
+            $table->foreign('black')->references('username')->on('users')->onDelete('cascade');
 
             $table->string('white');
-            $table->foreign('white')->references('username')->on('users');
+            $table->foreign('white')->references('username')->on('users')->onDelete('cascade');
 
-            $table->string('winner')->nullable();
-            $table->foreign('winner')->references('username')->on('users');
+            $table->string('winner');
+            $table->foreign('winner')->references('username')->on('users')->onDelete('cascade');
 
             $table->text('pgn')->nullable();
 
