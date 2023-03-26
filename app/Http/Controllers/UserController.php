@@ -8,6 +8,7 @@ use App\Http\Resources\V1\NewsCollection;
 use App\Http\Resources\V1\NewsResource;
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\AttendanceDay;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -33,10 +34,14 @@ class UserController extends Controller
     public function info($username){
         $user =  User::where('username',$username)->first();
         $activities = Activity::orderBy('name')->get();
-        $userActivities = $user->activities;
+        $userActivities = $user->activities()->select('name', 'weight')->get()->makeHidden('pivot');
+        $attendance = AttendanceDay::orderBy('date')->get();
+        $attended = $user->attendance_days()->select('id')->get()->makeHidden('pivot');
         return [
             'activities' => $activities,
-            'done' => $userActivities,
+            'doneActivities' => $userActivities,
+            'attendance' => $attendance,
+            'attended' => $attended,
           ];
       }
 

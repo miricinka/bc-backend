@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->get('/users', [UserController::class, 'index'
 
 Route::get('/users/{username}', [UserController::class, 'show']);
 
-Route::get('/users/info/{username}', [UserController::class, 'info']);
+Route::get('/users/{username}/info', [UserController::class, 'info']);
 
 Route::middleware('auth:sanctum')->post('/users', [UserController::class, 'store']);
 
