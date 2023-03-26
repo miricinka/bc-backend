@@ -8,6 +8,7 @@ use App\Http\Resources\V1\NewsCollection;
 use App\Http\Resources\V1\NewsResource;
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -64,6 +65,21 @@ class UserController extends Controller
 
         User::where('username',$username)->first()->delete();
         return response()->json("User " . $username . " deleted");
+    }
+
+    public function passwordChange(Request $request, $username){
+        $user =  User::where('username',$username)->first();
+
+        $currentPassword = $request->input('current_password');
+        $newPassword = $request->input('new_password');
+
+        if (!Hash::check($currentPassword, $user->password)) {
+            return response()->json('The current password is incorrect.', 401);
+        }
+
+        $user->password = Hash::make($newPassword);
+        $user->save();
+        return response()->json("Password changed successfully.");
     }
 
     public function getTokenableKeyName()

@@ -17,7 +17,7 @@ class TournamentController extends Controller
     {
         return Tournament::withCount('users')->with(['users' => function ($query) {
             $query->select('users.username');
-        }])->orderBy('date')->get();
+        }])->orderByDesc('date')->get();
     }
 
     /**

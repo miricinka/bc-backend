@@ -46,11 +46,13 @@ Route::get('/users/{username}', [UserController::class, 'show']);
 
 Route::get('/users/info/{username}', [UserController::class, 'info']);
 
-Route::post('/users', [UserController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/users', [UserController::class, 'store']);
 
-Route::delete('/users/{username}', [UserController::class, 'destroy']);
+Route::middleware('auth:sanctum')->delete('/users/{username}', [UserController::class, 'destroy']);
 
-Route::put('/users/{username}', [UserController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/users/{username}', [UserController::class, 'update']);
+
+Route::middleware('auth:sanctum')->put('/users/{username}/password', [UserController::class, 'passwordChange']);
 
 
 /*
