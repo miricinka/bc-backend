@@ -40,6 +40,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /*
     users
 */
+
+Route::middleware('auth:sanctum')->get('/users/points', [UserController::class, 'pointsOrder']);
+
 Route::middleware('auth:sanctum')->get('/users', [UserController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/users/{username}', [UserController::class, 'show']);

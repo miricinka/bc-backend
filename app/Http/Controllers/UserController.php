@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreNewsRequest;
 use App\Models\User;
-use App\Http\Resources\V1\NewsCollection;
-use App\Http\Resources\V1\NewsResource;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\AttendanceDay;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserController extends Controller
 {
@@ -92,4 +86,10 @@ class UserController extends Controller
     {
         return 'username';
     }
+
+    public function pointsOrder(){
+        return User::where('username', '!=', 'admin')->select('username')->withSum('activities', 'weight')->orderByDesc('activities_sum_weight')->get();
+    }
+
+
 }
