@@ -16,7 +16,7 @@ class ActivityController extends Controller
     public function store(Request $request){
         //return response()->json("Activity created");
         Activity::create($request->validate([ 
-            'name' => ['required'],
+            'name' => ['required', 'unique:activities'],
             'weight' => ['required'],
             'description' => 'nullable',
         ]));

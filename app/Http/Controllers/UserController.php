@@ -31,17 +31,23 @@ class UserController extends Controller
         $userActivities = $user->activities()->select('name', 'weight')->get()->makeHidden('pivot');
         $attendance = AttendanceDay::orderBy('date')->get();
         $attended = $user->attendance_days()->select('id')->get()->makeHidden('pivot');
+        $tournaments = $user->tournaments()->select('id', 'title', 'date')->orderBy('date')->get();
+        $points = User::where('username', '!=', 'admin')->where('username', $username)->withSum('activities', 'weight')->value('activities_sum_weight');
+        $order = User::where('username', '!=', 'admin')->select('username')->withSum('activities', 'weight')->orderByDesc('activities_sum_weight')->pluck('username')->search($username);
         return [
             'activities' => $activities,
             'doneActivities' => $userActivities,
             'attendance' => $attendance,
             'attended' => $attended,
+            'tournaments' => $tournaments,
+            'points' => intval($points),
+            'order' => $order + 1,
           ];
       }
 
     public function store(Request $request){
         User::create($request->validate([ 
-            'username' => ['required'],
+            'username' => ['required', 'unique:users'],
             'name' => ['required'],
             'surname' => ['required'],
             'email' => ['required'],

@@ -58,4 +58,8 @@ class User extends Authenticatable
     public function attendance_days(){
         return $this->belongsToMany(AttendanceDay::class, 'attendence_days_users', 'username', 'attendance_day_id');
     }
+
+    public function tournaments(){
+        return $this->belongsToMany(Tournament::class, 'tournaments_users', 'username', 'tournament_id');
+    }
 }
