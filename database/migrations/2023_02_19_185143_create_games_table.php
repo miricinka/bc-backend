@@ -24,7 +24,7 @@ class CreateGamesTable extends Migration
             $table->string('white');
             $table->foreign('white')->references('username')->on('users')->onDelete('cascade');
 
-            $table->string('winner');
+            $table->string('winner')->nullable();
             $table->foreign('winner')->references('username')->on('users')->onDelete('cascade');
 
             $table->text('pgn')->nullable();
