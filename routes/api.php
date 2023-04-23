@@ -122,7 +122,7 @@ Route::middleware('auth:sanctum')->delete('/attendance', [AttendanceDaysUsersCon
 /*
     tournaments
 */
-Route::get('/tournament', [TournamentController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/tournament', [TournamentController::class, 'index']);
 
 Route::middleware('auth:sanctum')->post('/tournament', [TournamentController::class, 'store']);
 
