@@ -134,9 +134,9 @@ class DatabaseSeeder extends Seeder
             'pgn' => '1. e4 e5 {king\'s pawn opening} 2. Nf3 Nc6 {aaa} 3. Bc4 Bc5 {giuoco piano} *'
         ]);
         DB::table('events')->insert([
-            'name' => 'Muzeum sachu',
+            'name' => 'Muzeum šachu',
             'date' => '2023-12-03 00:00:00',
-            'description' => 'Vylet do nejvestiho muzea sachu v CR. S sebou svavinu a piti.',
+            'description' => 'Dne 3. 12. 2023 uspořádáme výlet do největšího muzea šachu v ČR. S sebou svačinu a pití.',
         ]);
         DB::table('events')->insert([
             'name' => 'Sachy pod sluncem',
