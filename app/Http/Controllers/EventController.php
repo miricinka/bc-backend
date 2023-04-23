@@ -9,7 +9,12 @@ class EventController extends Controller
 {
     public function index()
     {
-        return Event::orderBy('date')->get();
+        $upcoming = Event::where('date', '>=', now())->orderBy('date')->get();
+        $passed = Event::where('date', '<', now())->orderByDesc('date')->get();
+        return [
+            'upcoming' => $upcoming,
+            'passed' => $passed,
+          ];
     }
 
     public function store(Request $request)
