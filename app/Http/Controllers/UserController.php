@@ -46,6 +46,10 @@ class UserController extends Controller
       }
 
     public function store(Request $request){
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         User::create($request->validate([ 
             'username' => ['required', 'unique:users'],
             'name' => ['required'],

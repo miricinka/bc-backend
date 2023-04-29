@@ -15,6 +15,7 @@ class CreateTournamentsUsersTable extends Migration
     {
         Schema::create('tournaments_users', function (Blueprint $table) {
             $table->primary(['tournament_id', 'username']);
+            $table->timestamps();
 
             $table->foreignId('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
 

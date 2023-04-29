@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
         DB::table('tournaments')->insert([
             'title' => 'Hra o zlatý pohár',
             'date' => '2023-02-16 00:00:00',
-            'description'=> 'Hra o zlatý pohár'
+            'description'=> 'V tomto turnaji výherce získá opravdový zlatý pohár!'
         ]);
         DB::table('tournaments')->insert([
             'title' => 'Turnaj stříbrný bludišťák',
@@ -112,19 +112,23 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('tournaments_users')->insert([
             'tournament_id' => '1',
-            'username' => 'user_1'
+            'username' => 'user_1',
+            'created_at' => '2023-02-15 02:15:30'
         ]);
         DB::table('tournaments_users')->insert([
             'tournament_id' => '1',
-            'username' => 'user_2'
+            'username' => 'user_2',
+            'created_at' => '2023-02-11 02:15:30'
         ]);
         DB::table('tournaments_users')->insert([
             'tournament_id' => '1',
-            'username' => 'user_3'
+            'username' => 'user_3',
+            'created_at' => '2023-02-10 02:15:30'
         ]);
         DB::table('tournaments_users')->insert([
             'tournament_id' => '1',
-            'username' => 'user_4'
+            'username' => 'user_4',
+            'created_at' => '2023-02-01 02:15:30',
         ]);
         DB::table('games')->insert([
             'tournament_id' => '1',

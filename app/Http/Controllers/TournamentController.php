@@ -44,8 +44,11 @@ class TournamentController extends Controller
      */
     public function show(Tournament $tournament)
     {
-        return Tournament::with('users', 'games')->find($tournament)->first();
-        //return $tournament::withCount('users')->get();
+        //todo order users by date_created
+        //return Tournament::with('users', 'games')->find($tournament)->first();
+        return Tournament::with(['users' => function($query) {
+            $query->orderBy('tournaments_users.created_at', 'asc');
+        }, 'games'])->find($tournament)->first();
     }
 
     /**
