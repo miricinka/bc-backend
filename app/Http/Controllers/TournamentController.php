@@ -28,6 +28,10 @@ class TournamentController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         Tournament::create($request->validate([ 
             'date' => ['required'],
             'title' => ['required'],
@@ -44,8 +48,6 @@ class TournamentController extends Controller
      */
     public function show(Tournament $tournament)
     {
-        //todo order users by date_created
-        //return Tournament::with('users', 'games')->find($tournament)->first();
         return Tournament::with(['users' => function($query) {
             $query->orderBy('tournaments_users.created_at', 'asc');
         }, 'games'])->find($tournament)->first();
@@ -60,6 +62,10 @@ class TournamentController extends Controller
      */
     public function update(Request $request, Tournament $tournament)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $tournament->update($request->validate([ 
             'date' => ['required'],
             'title' => ['required'],
@@ -73,8 +79,12 @@ class TournamentController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tournament $tournament)
+    public function destroy(Request $request, Tournament $tournament)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $tournament->delete();
         return response()->json("Tournament deleted");
     }

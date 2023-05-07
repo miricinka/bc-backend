@@ -25,15 +25,9 @@ class CommentController extends Controller
 
     public function update(Request $request, Comment $comment)
     {
-        // $comment->update($request->validate([ 
-        //     'text' => ['required','min:3', 'max:20']
-        // ]));
-        //$validated = $request->validate(['text' => ['required','min:3', 'max:20']]);
         $comment->update($request->validate([ 
             'text' => ['required','min:3']
         ]));
-
-        //return $product;
         return response()->json("Comment updated");
     }
 

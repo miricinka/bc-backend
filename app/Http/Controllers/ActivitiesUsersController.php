@@ -14,6 +14,11 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ActivitiesUsersController extends Controller
 {
+    /**
+     * Display a listing of users and activites.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getUsersActivitiesTable(){
       $users =  User::where('username', '!=', 'admin')->orderBy('username')->get();
       $activities = Activity::orderBy('name')->get();
@@ -26,6 +31,10 @@ class ActivitiesUsersController extends Controller
     }
 
     public function done(Request $request){
+      if($request->user()->role != 'admin'){
+        return response()->json(['message' => 'Unauthorized'], 401);
+      }
+
       $username = $request->input('username');
       $activity_name = $request->input('activity');
 
@@ -37,6 +46,9 @@ class ActivitiesUsersController extends Controller
     }
 
     public function unDone(Request $request){
+      if($request->user()->role != 'admin'){
+        return response()->json(['message' => 'Unauthorized'], 401);
+      }
       $username = $request->input('username');
       $activity_name = $request->input('activity');
 

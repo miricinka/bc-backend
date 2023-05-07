@@ -71,7 +71,10 @@ class UserController extends Controller
         return response()->json("User" . $username . "updated");
     }
 
-    public function destroy($username){
+    public function destroy(Request $request, $username){
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
 
         User::where('username',$username)->first()->delete();
         return response()->json("User " . $username . " deleted");
