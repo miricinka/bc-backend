@@ -32,6 +32,9 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         News::create($request->validate([ 
             'title' => ['required'],
             'text' => ['required']
@@ -64,6 +67,9 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         $news->update($request->validate([ 
             'title' => ['required'],
             'text' => ['required']
@@ -77,8 +83,11 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Request $request, News $news)
     {
+        if($request->user()->role != 'admin'){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         $news->delete();
         return response()->json("News deleted");
     }
