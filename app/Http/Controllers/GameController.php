@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+    /**
+     * Store a newly created game in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         if($request->user()->role != 'admin'){

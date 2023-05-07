@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AttendanceDayController extends Controller
 {
+    /**
+     * Store a newly created attendance day in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request){
         if($request->user()->role != 'admin'){
             return response()->json(['message' => 'Unauthorized'], 401);

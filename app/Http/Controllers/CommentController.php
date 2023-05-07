@@ -18,6 +18,12 @@ class CommentController extends Controller
         return $news->comments()->orderBy('created_at','desc')->get();
     }
 
+    /**
+     * Store a newly created comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         Comment::create($request->validate([ 

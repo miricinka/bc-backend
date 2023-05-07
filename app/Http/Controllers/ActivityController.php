@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ActivityController extends Controller
 {
@@ -17,6 +19,12 @@ class ActivityController extends Controller
         return Activity::where('name',$name)->first();
     }
 
+    /**
+     * Store a newly created activity in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request){
 
         if($request->user()->role != 'admin'){
@@ -66,5 +74,62 @@ class ActivityController extends Controller
 
         Activity::where('name',$activity_id)->first()->delete();
         return response()->json("Activity " . $activity_id . " deleted");
+    }
+
+    /**
+     * Display a listing of users and activites.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsersActivitiesTable(){
+        $users =  User::where('username', '!=', 'admin')->orderBy('username')->get();
+        $activities = Activity::orderBy('name')->get();
+        $activitiesUsers = DB::table('activities_users')->get();
+        return [
+          'users' => $users,
+          'activities' => $activities,
+          'done' => $activitiesUsers
+        ];
+      }
+
+    /**
+     * Mark activity as done for a specific user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function done(Request $request){
+        if($request->user()->role != 'admin'){
+          return response()->json(['message' => 'Unauthorized'], 401);
+        }
+  
+        $username = $request->input('username');
+        $activity_name = $request->input('activity');
+  
+        $user =  User::where('username',$username)->first();
+        $activity =  Activity::where('name',$activity_name)->first();
+  
+        $user->activities()->attach($activity);
+        return response()->json("Activity marked as done");
+    }
+  
+    /**
+     * Unmark activity as done for a specific user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function unDone(Request $request){
+        if($request->user()->role != 'admin'){
+          return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $username = $request->input('username');
+        $activity_name = $request->input('activity');
+  
+        $user =  User::where('username',$username)->first();
+        $activity =  Activity::where('name',$activity_name)->first();
+  
+        $user->activities()->detach($activity);
+        return response()->json("Activity marked as not done");
     }
 }

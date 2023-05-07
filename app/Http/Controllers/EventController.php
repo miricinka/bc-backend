@@ -22,6 +22,12 @@ class EventController extends Controller
           ];
     }
 
+    /**
+     * Store a newly created event in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         if($request->user()->role != 'admin'){
