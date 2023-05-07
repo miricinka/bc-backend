@@ -106,11 +106,11 @@ Route::middleware('auth:sanctum')->post('/attendanceDay', [AttendanceDayControll
 
 Route::middleware('auth:sanctum')->delete('/attendance/{day}', [AttendanceDayController::class, 'destroy']);
 
-Route::middleware('auth:sanctum')->get('/attendanceUsersTable', [AttendanceDaysUsersController::class, 'getAttendanceUsersTable']);
+Route::middleware('auth:sanctum')->get('/attendance', [AttendanceDayController::class, 'show']);
 
-Route::middleware('auth:sanctum')->post('/attendance', [AttendanceDaysUsersController::class, 'add']);
+Route::middleware('auth:sanctum')->post('/attendance', [AttendanceDayController::class, 'attend']);
 
-Route::middleware('auth:sanctum')->delete('/attendance', [AttendanceDaysUsersController::class, 'delete']);
+Route::middleware('auth:sanctum')->delete('/attendance', [AttendanceDayController::class, 'unattend']);
 
 
 /*
