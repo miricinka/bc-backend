@@ -25,13 +25,21 @@ class CommentController extends Controller
 
     public function update(Request $request, Comment $comment)
     {
+        if($request->user()->role != 'admin' && $request->user()->username != $comment->username){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $comment->update($request->validate([ 
             'text' => ['required','min:3']
         ]));
         return response()->json("Comment updated");
     }
 
-    public function destroy(Comment $comment){
+    public function destroy(Request $request, Comment $comment){
+        if($request->user()->role != 'admin' && $request->user()->username != $comment->username){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $comment->delete();
         return response()->json("Comment deleted");
     }
