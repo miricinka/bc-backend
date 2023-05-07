@@ -1,7 +1,5 @@
 <?php
 
-//php artisan serve
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
@@ -10,9 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\TournamentController;
-use App\Http\Controllers\ActivitiesUsersController;
 use App\Http\Controllers\AttendanceDayController;
-use App\Http\Controllers\AttendanceDaysUsersController;
 use App\Http\Controllers\EventController;
 
 /*
