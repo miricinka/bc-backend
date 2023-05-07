@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreNewsRequest;
+use Illuminate\Http\Request;
 use App\Models\News;
 
 class NewsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the news.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $news = News::orderBy('created_at','desc')->get();
-        //$news = News::with('comments')->get();
         $response = array();
         foreach($news as $new){
             $count = $new->comments()->get()->count();
@@ -23,24 +22,25 @@ class NewsController extends Controller
             array_push($response, $newWithCount);
         }
         return $response;
-        //return News::orderBy('created_at','desc')->get();
-        //return new ResourceCollection(News::orderBy('created_at','desc')->get());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created news in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNewsRequest $request)
+    public function store(Request $request)
     {
-        News::create($request->validated());
+        News::create($request->validate([ 
+            'title' => ['required'],
+            'text' => ['required']
+        ]));
         return response()->json("New news created");
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified news by id.
      *
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
@@ -56,20 +56,23 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified news in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreNewsRequest $request, News $news)
+    public function update(Request $request, News $news)
     {
-        $news->update($request->validated());
+        $news->update($request->validate([ 
+            'title' => ['required'],
+            'text' => ['required']
+        ]));
         return response()->json("News updated");
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified news from storage.
      *
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response

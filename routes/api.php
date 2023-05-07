@@ -31,12 +31,6 @@ Route::post('/login', [AuthController::class, 'login']);
 //logout is protected
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-
-//protected routes
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 /*
     users
 */

@@ -51,37 +51,44 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
         DB::table('news')->insert([
-            'title' => 'nova aktualita',
-            'text' => 'nova aktualita text',
+            'title' => 'Mistrovství ČR mládeže v rapid šachu 2023',
+            'text' => 'Ve dnech 4. – 6. září 2020 se v Českých Budějovicích konalo Mistrovství ČR mládeže v rapid šachu 2020. Z kuřimských dětí si za body získané v seriálu KP v uplynulém roce účast vybojovalo šest šachistů a šachistek. V silné konkurenci (mistrovství se účastnila většina nejlepších hráčů) se vzhledem k tréninkovému manku dá říct, že naše konečná umístění rozhodně nejsou zklamáním.',
             'created_at' => '2023-01-09 00:00:00',
         ]);
         DB::table('news')->insert([
-            'title' => 'aktualita 2',
-            'text' => 'text nove aktuality 2',
+            'title' => 'Hráči proti velmistrům',
+            'text' => 'Šachy se hrají navzdory koronaviru – aktuálně běží souboj Hráči proti velmistrům na youtube kanálu Robert a Petr šachy. Po první simultánce Štěpána Žilky, kdy se ukázalo, že proti stovce hráčů to nestíhá ani portál Lichess, natož velmistr (Andrej vyhrál na čas), se nově hraje vždy proti dvacítce předem přihlášených hráčů.
+            Prvních dvacet zástupců hráčské komunity se drželo skvěle a dokázalo velmistra Žilku porazit. Do pondělní partie nastoupí za velmistry Vojtěch Plát a na šachovnici č. 15 bude Andrej...tak mu držte palce...
+            Velmistři se nechtějí jen tak dát – viz komentář na FB stránce RaP šachy: „Chtěli jste válku? Máte ji mít! Vypouštíme proti Vám " Krakena " a těšte se na pondělí! Vedete v simultánce 1-0 a co se na Vás chystá, to budou vlny:) Vojta bude v přenosu blafovat, mystifikovat a klamat, tak aby náš cíl a tím je vyrovnat zápas proti Vám byl splněn. Není jiná možnost, než vyrovnat tento souboj s Vámi! Legrace skončila ! To bohdá nebude, aby český lid porážel nám velmistry!!',
             'created_at' => '2023-01-11 00:00:00',
         ]);
         DB::table('comments')->insert([
-            'text' => 'comment k aktualite 2',
+            'text' => 'Paráda',
             'news_id' => '2',
             'username' => 'user_1',
             'created_at' => '2023-01-11 00:00:00',
         ]);
         DB::table('activities')->insert([
-            'name' => 'Kresleni',
+            'name' => 'DÚ 1',
             'weight' => '2',
-            'description' => 'Ta nejlepsi aktivita',
+            'description' => 'Domácí úkol zadaný 11. 3. 2022',
         ]);
         DB::table('activities')->insert([
-            'name' => 'Psani',
+            'name' => 'Soutěž',
             'weight' => '4',
-            'description' => 'Ta nejlepsi aktivita 2',
+            'description' => 'Soutěž',
+        ]);
+        DB::table('activities')->insert([
+            'name' => 'DÚ 2',
+            'weight' => '1',
+            'description' => 'Soutěž',
         ]);
         DB::table('activities_users')->insert([
-            'activity' => 'Kresleni',
+            'activity' => 'DÚ 1',
             'username' => 'user_2',
         ]);
         DB::table('activities_users')->insert([
-            'activity' => 'Psani',
+            'activity' => 'Soutěž',
             'username' => 'user_1',
         ]);
         DB::table('attendance_days')->insert([
