@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    /**
+     * Display a listing of events.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $upcoming = Event::where('date', '>=', now())->orderBy('date')->get();

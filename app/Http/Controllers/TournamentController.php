@@ -9,7 +9,7 @@ use App\Models\User;
 class TournamentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of tournaments.
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,7 +21,7 @@ class TournamentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created tournament in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,7 +41,7 @@ class TournamentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified tournament.
      *
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
@@ -54,7 +54,7 @@ class TournamentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified tournament in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tournament  $tournament
@@ -74,7 +74,7 @@ class TournamentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tournament from storage.
      *
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
@@ -89,6 +89,12 @@ class TournamentController extends Controller
         return response()->json("Tournament deleted");
     }
 
+    /**
+     * subscribe user to a specific tournament.
+     *
+     * @param  \App\Models\Tournament  $tournament
+     * @return \Illuminate\Http\Response
+     */
     public function addUser(Tournament $tournament, Request $request){
         $username = $request->input('username');
   
@@ -100,6 +106,12 @@ class TournamentController extends Controller
 
     }
 
+    /**
+     * unsubscribe user from a specific tournament.
+     *
+     * @param  \App\Models\Tournament  $tournament
+     * @return \Illuminate\Http\Response
+     */
     public function deleteUser(Tournament $tournament, Request $request){
         $username = $request->input('username');
   

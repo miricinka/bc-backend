@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * Display a listing of users.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return User::where('username', '!=', 'admin')->orderBy('username')->get();
@@ -65,7 +70,7 @@ class UserController extends Controller
         if($request->user()->role != 'admin' && $request->user()->username != $username){
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        
+
         $user =  User::where('username',$username)->first();
         $user->update($request->validate([ 
             'name' => ['required'],

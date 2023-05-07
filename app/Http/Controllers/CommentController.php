@@ -8,6 +8,11 @@ use App\Models\News;
 
 class CommentController extends Controller
 {
+    /**
+     * Display a listing of comments for specific news.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getComments(News $news)
     {
         return $news->comments()->orderBy('created_at','desc')->get();
