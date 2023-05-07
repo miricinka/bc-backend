@@ -9,6 +9,13 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    /**
+     * Handle login
+     * Created bearer token
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -24,6 +31,13 @@ class AuthController extends Controller
         return response()->json(['message' => 'Invalid login credentials'], 401);
     }
 
+    /**
+     * Handle logout
+     * Delete bearer token
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();

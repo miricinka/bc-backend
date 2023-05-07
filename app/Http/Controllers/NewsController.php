@@ -80,6 +80,7 @@ class NewsController extends Controller
     /**
      * Remove the specified news from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */

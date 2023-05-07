@@ -93,6 +93,7 @@ class TournamentController extends Controller
     /**
      * subscribe user to a specific tournament.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
@@ -110,6 +111,7 @@ class TournamentController extends Controller
     /**
      * unsubscribe user from a specific tournament.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */

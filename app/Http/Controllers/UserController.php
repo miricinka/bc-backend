@@ -121,6 +121,13 @@ class UserController extends Controller
         return response()->json("User " . $username . " deleted");
     }
 
+    /**
+     * Change password for specific user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $username
+     * @return \Illuminate\Http\Response
+     */
     public function passwordChange(Request $request, $username){
         if($request->user()->role != 'admin' && $request->user()->username != $username){
             return response()->json(['message' => 'Unauthorized'], 401);
@@ -145,6 +152,11 @@ class UserController extends Controller
         return 'username';
     }
 
+    /**
+     * Order students by their points from activites.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function pointsOrder(){
         return User::where('username', '!=', 'admin')->select('username')->withSum('activities', 'weight')->orderByDesc('activities_sum_weight')->get();
     }
