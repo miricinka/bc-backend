@@ -62,6 +62,10 @@ class UserController extends Controller
 
     public function update(Request $request, $username)
     {
+        if($request->user()->role != 'admin' && $request->user()->username != $username){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        
         $user =  User::where('username',$username)->first();
         $user->update($request->validate([ 
             'name' => ['required'],
@@ -81,6 +85,10 @@ class UserController extends Controller
     }
 
     public function passwordChange(Request $request, $username){
+        if($request->user()->role != 'admin' && $request->user()->username != $username){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $user =  User::where('username',$username)->first();
 
         $currentPassword = $request->input('current_password');
