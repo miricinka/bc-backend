@@ -28,6 +28,13 @@ class CommentController extends Controller
         return response()->json("Comment created");
     }
 
+    /**
+     * Update the specified comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Comment $comment)
     {
         if($request->user()->role != 'admin' && $request->user()->username != $comment->username){
@@ -40,6 +47,13 @@ class CommentController extends Controller
         return response()->json("Comment updated");
     }
 
+    /**
+     * Remove the specified comment from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Comment $comment
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request, Comment $comment){
         if($request->user()->role != 'admin' && $request->user()->username != $comment->username){
             return response()->json(['message' => 'Unauthorized'], 401);

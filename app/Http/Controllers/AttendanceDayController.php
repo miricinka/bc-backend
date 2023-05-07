@@ -17,6 +17,13 @@ class AttendanceDayController extends Controller
         return response()->json("Dates added");
     }
 
+    /**
+     * Remove the specified attendance day from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\AttendanceDay $day
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request, AttendanceDay $day){
         if($request->user()->role != 'admin'){
             return response()->json(['message' => 'Unauthorized'], 401);

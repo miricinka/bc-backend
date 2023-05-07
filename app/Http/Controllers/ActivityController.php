@@ -31,25 +31,40 @@ class ActivityController extends Controller
         return response()->json("Activity created");
     }
 
-    public function update(Request $request, $activityName)
+    /**
+     * Update the specified activity in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param   $activity_id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $activity_id)
     {
         if($request->user()->role != 'admin'){
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        $activity = Activity::where('name',$activityName)->first();
+        $activity = Activity::where('name',$activity_id)->first();
         $activity->update($request->validate([ 
+            'name' => ['required'],
             'weight' => ['required']
         ]));
 
         return response()->json("Activity updated");
     }
 
-    public function destroy(Request $request, $activityName){
+    /**
+     * Remove the specified activity from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $activity_id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $activity_id){
         if($request->user()->role != 'admin'){
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        Activity::where('name',$activityName)->first()->delete();
-        return response()->json("Activity " . $activityName . " deleted");
+        Activity::where('name',$activity_id)->first()->delete();
+        return response()->json("Activity " . $activity_id . " deleted");
     }
 }

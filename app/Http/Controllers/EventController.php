@@ -36,11 +36,24 @@ class EventController extends Controller
         return response()->json("Tournament created");
     }
 
+    /**
+     * Display the specified event by id.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
     public function show(Event $event)
     {
         return $event;
     }
 
+    /**
+     * Update the specified event in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Event $event)
     {
         if($request->user()->role != 'admin'){
@@ -55,6 +68,13 @@ class EventController extends Controller
         return response()->json("Event updated");
     }
 
+    /**
+     * Remove the specified event from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Event $event
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request, Event $event)
     {
         if($request->user()->role != 'admin'){

@@ -20,6 +20,12 @@ class UserController extends Controller
         return User::where('username', '!=', 'admin')->orderBy('username')->get();
     }
 
+    /**
+     * Display the specified user by username.
+     *
+     * @param  $username
+     * @return \Illuminate\Http\Response
+     */
     public function show($username)
     {
         return User::where('username',$username)->first();
@@ -30,6 +36,12 @@ class UserController extends Controller
       return $user->activities;
     }
 
+    /**
+     * Display the specified user by username with additional information.
+     *
+     * @param  $username
+     * @return \Illuminate\Http\Response
+     */
     public function info($username){
         $user =  User::where('username',$username)->first();
         $activities = Activity::orderBy('name')->get();
@@ -65,6 +77,13 @@ class UserController extends Controller
         return response()->json("User created");
     }
 
+    /**
+     * Update the specified user in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $username
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $username)
     {
         if($request->user()->role != 'admin' && $request->user()->username != $username){
@@ -80,6 +99,13 @@ class UserController extends Controller
         return response()->json("User" . $username . "updated");
     }
 
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $username
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request, $username){
         if($request->user()->role != 'admin'){
             return response()->json(['message' => 'Unauthorized'], 401);

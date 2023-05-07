@@ -76,6 +76,7 @@ class TournamentController extends Controller
     /**
      * Remove the specified tournament from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
