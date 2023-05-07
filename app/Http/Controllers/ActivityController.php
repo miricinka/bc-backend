@@ -81,7 +81,7 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUsersActivitiesTable(){
+    public function showUsersActivities(){
         $users =  User::where('username', '!=', 'admin')->orderBy('username')->get();
         $activities = Activity::orderBy('name')->get();
         $activitiesUsers = DB::table('activities_users')->get();

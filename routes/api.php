@@ -88,7 +88,7 @@ Route::middleware('auth:sanctum')->delete('/activity/{name}', [ActivityControlle
 
 Route::middleware('auth:sanctum')->get('/users/{username}/activities', [UserController::class, 'showActivities']);
 
-Route::middleware('auth:sanctum')->get('/userActivitiesTable', [ActivityController::class, 'getUsersActivitiesTable']);
+Route::middleware('auth:sanctum')->get('/usersActivities', [ActivityController::class, 'showUsersActivities']);
 
 Route::middleware('auth:sanctum')->post('/activityDone', [ActivityController::class, 'done']);
 
