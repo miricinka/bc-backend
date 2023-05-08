@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserNotification;
 use App\Models\User;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\AttendanceDay;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -80,6 +82,16 @@ class UserController extends Controller
             'email' => ['required'],
             'password' => ['required'],
         ]));
+
+        $to = $request->email;
+        $content = 'Přístupové údaje jsou: přihlašovací jméno: ' . $request->username . "\n heslo: " . $request->password;
+
+        Mail::raw($content, function($message) use ($to){
+            $message->to($to);
+            $message->subject('Přístupové údaje');
+            $message->from('your-email@gmail.com', 'Your Name');
+        });
+
         return response()->json("User created");
     }
 
