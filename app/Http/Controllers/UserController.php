@@ -86,14 +86,14 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        $to = $request->email;
-        $content = 'Přístupové údaje jsou: přihlašovací jméno: ' . $request->username . "\n heslo: " . $request->password;
+        // $to = $request->email;
+        // $content = 'Přístupové údaje jsou: přihlašovací jméno: ' . $request->username . "\n heslo: " . $request->password;
 
-        Mail::raw($content, function($message) use ($to){
-            $message->to($to);
-            $message->subject('Přístupové údaje');
-            $message->from('your-email@gmail.com', 'Your Name');
-        });
+        // Mail::raw($content, function($message) use ($to){
+        //     $message->to($to);
+        //     $message->subject('Přístupové údaje');
+        //     $message->from('your-email@gmail.com', 'Your Name');
+        // });
 
         return response()->json("User created");
     }
