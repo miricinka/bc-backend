@@ -83,6 +83,10 @@ class UserController extends Controller
             'password' => ['required'],
         ]));
 
+        $user =  User::where('username',$request->username)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
         $to = $request->email;
         $content = 'Přístupové údaje jsou: přihlašovací jméno: ' . $request->username . "\n heslo: " . $request->password;
 
