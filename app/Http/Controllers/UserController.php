@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\UserNotification;
 use App\Models\User;
 use App\Models\Activity;
 use Illuminate\Http\Request;
